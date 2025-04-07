@@ -7,3 +7,8 @@ This repository will automate task to clean up overdrive marc records.
 * See .tool-versions for language version requirements (ruby)
 
 `asdf install`
+`bundle install`
+
+### Run tests
+
+`bundle exec rspec`
