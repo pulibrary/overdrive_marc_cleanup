@@ -11,3 +11,6 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/support/**/*'
     - 'tmp/**/*'
+
+RSpec/DescribedClass:
+  Enabled: false
