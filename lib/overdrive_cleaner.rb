@@ -6,9 +6,6 @@ class OverdriveCleaner
   # input_directory is where the files from overdrive are
   attr_accessor :input_directory
 
-  # output_file are the records that have been combined and cleaned
-  attr_accessor :output_file
-
   # OverdriveCleaner.clean(input_directory) should produce a combined file of cleaned marc records
   def self.clean(input_directory)
     odc = OverdriveCleaner.new
@@ -21,6 +18,7 @@ class OverdriveCleaner
     true
   end
 
+  # output_file are the records that have been combined and cleaned
   def output_file
     "#{input_directory}clean_records.mrc"
   end
