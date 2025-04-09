@@ -7,6 +7,13 @@ RSpec.describe OverdriveCleaner do
   let(:input_directory) { File.join(File.dirname(__FILE__), 'fixtures/Princeton University-20250204090033910/') }
   let(:oc) { OverdriveCleaner.clean(input_directory) }
 
+  # runs before every test and deletes the output file
+  before do
+    temp_object = OverdriveCleaner.new
+    temp_object.input_directory = input_directory
+    File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
+  end
+
   it 'can be instantiated' do
     oc = OverdriveCleaner.new
     expect(oc).to be_instance_of(OverdriveCleaner)

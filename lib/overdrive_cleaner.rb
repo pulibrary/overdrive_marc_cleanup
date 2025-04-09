@@ -13,13 +13,16 @@ class OverdriveCleaner
   def self.clean(input_directory)
     odc = OverdriveCleaner.new
     odc.input_directory = input_directory
-    odc.output_file = "#{input_directory}clean_records.mrc"
     odc.write_output_file
     odc
   end
 
   def marc_file
     true
+  end
+
+  def output_file
+    "#{input_directory}clean_records.mrc"
   end
 
   def write_output_file
