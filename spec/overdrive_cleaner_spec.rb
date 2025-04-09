@@ -19,7 +19,7 @@ RSpec.describe OverdriveCleaner do
     expect(oc).to be_instance_of(OverdriveCleaner)
   end
 
-  it 'has a file of MARC records' do
+  it 'has a file of marc records' do
     oc = OverdriveCleaner.new
     expect(oc.marc_file).to be true
   end
