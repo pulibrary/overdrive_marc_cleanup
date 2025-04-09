@@ -14,6 +14,12 @@ RSpec.describe OverdriveCleaner do
     File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
   end
 
+  after do
+    temp_object = OverdriveCleaner.new
+    temp_object.input_directory = input_directory
+    File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
+  end
+
   it 'can be instantiated' do
     oc = OverdriveCleaner.new
     expect(oc).to be_instance_of(OverdriveCleaner)
@@ -27,6 +33,10 @@ RSpec.describe OverdriveCleaner do
   it 'takes a directory of marc files' do
     expect(oc).to be_instance_of(OverdriveCleaner)
     expect(oc.input_directory).to eq(input_directory)
+  end
+
+  it 'has a list of the marc files' do
+    expect(oc.marc_files.first).to match 'Princeton University-20250204090033910_audio.mrc'
   end
 
   it 'knows where the output file should go' do

@@ -18,6 +18,10 @@ class OverdriveCleaner
     true
   end
 
+  def marc_files
+    Dir["#{input_directory}*"]
+  end
+
   # output_file are the records that have been combined and cleaned
   def output_file
     "#{input_directory}clean_records.mrc"
