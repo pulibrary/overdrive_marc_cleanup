@@ -52,7 +52,6 @@ class OverdriveCleaner
       reader = MARC::Reader.new(file)
       reader.each do |record|
         authors << record['100']['a']
-      rescue MARC::Exception
       end
     end
     authors
