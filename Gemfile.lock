@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/pulibrary/marc_cleanup.git
+  revision: dae18c9126819116a82b893f8cde89a2906e70e0
+  tag: v0.9.5
+  specs:
+    marc_cleanup (0.9.5)
+      marc (~> 1.0)
+      nokogiri
+      unf (= 0.1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,6 +62,9 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.9.1)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
@@ -62,6 +75,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   marc
+  marc_cleanup!
   rspec
   rubocop
   rubocop-rspec

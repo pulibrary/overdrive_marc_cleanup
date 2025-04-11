@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'marc'
+require 'marc_cleanup'
+
 # This is a class that takes a directory of MARC files from overdrive
 # and gives back a file of MARC records that are formatted the way PUL wants them
 class OverdriveCleaner
@@ -29,5 +32,35 @@ class OverdriveCleaner
 
   def write_output_file
     File.open(output_file, 'w') { |file| file.write('your text') }
+  end
+
+  def marc_records
+    records = []
+    marc_files.each do |file|
+      reader = MARC::Reader.new(file)
+      reader.each do |record|
+        # this should work line 46 but it does not
+        # I tried to catch the excpetion with rescue
+        # I tried to find the leader errors
+        # I tried to reformatt the files with marc edit
+        # I tried to only run it with one file at a time
+        # I tried to get the fields out instead of the whole marc record
+        records << record
+        puts MarcCleanup.leader_errors?(record)
+      end
+    end
+    records
+  end
+
+  def author_100a
+    authors = []
+    marc_files.each do |file|
+      reader = MARC::Reader.new(file)
+      reader.each do |record|
+        authors << record['100']['a']
+      rescue MARC::Exception
+      end
+    end
+    authors
   end
 end

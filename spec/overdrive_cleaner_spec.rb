@@ -39,6 +39,17 @@ RSpec.describe OverdriveCleaner do
     expect(oc.marc_files.first).to match 'Princeton University-20250204090033910_audio.mrc'
   end
 
+  # ask Trey about this test
+  # MARC::Exception:
+  # invalid record length: your
+  it 'has a list of the marc records' do
+    expect(oc.marc_records.count).to eq 16
+  end
+
+  it 'has an array with 100$a subfield for each marc record' do
+    expect(oc.author_100a.first).to eq 'Kureishi, Hanif'
+  end
+
   it 'knows where the output file should go' do
     expect(oc.output_file).to eq "#{input_directory}clean_records.mrc"
   end
