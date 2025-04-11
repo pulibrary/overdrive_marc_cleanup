@@ -11,10 +11,13 @@ class OverdriveCleaner
 
   # OverdriveCleaner.clean(input_directory) should produce a combined file of cleaned marc records
   def self.clean(input_directory)
-    odc = OverdriveCleaner.new
-    odc.input_directory = input_directory
+    odc = OverdriveCleaner.new(input_directory)
     odc.write_output_file
     odc
+  end
+
+  def initialize(input_directory)
+    @input_directory = input_directory
   end
 
   def marc_file
@@ -39,12 +42,6 @@ class OverdriveCleaner
     marc_files.each do |file|
       reader = MARC::Reader.new(file)
       reader.each do |record|
-        # this should work line 46 but it does not
-        # I tried to catch the excpetion with rescue
-        # I tried to find the leader errors
-        # I tried to reformatt the files with marc edit
-        # I tried to only run it with one file at a time
-        # I tried to get the fields out instead of the whole marc record
         records << record
         puts MarcCleanup.leader_errors?(record)
       end

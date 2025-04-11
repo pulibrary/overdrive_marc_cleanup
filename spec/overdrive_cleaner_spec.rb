@@ -9,24 +9,22 @@ RSpec.describe OverdriveCleaner do
 
   # runs before every test and deletes the output file
   before do
-    temp_object = OverdriveCleaner.new
-    temp_object.input_directory = input_directory
+    temp_object = OverdriveCleaner.new(input_directory)
     File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
   end
 
   after do
-    temp_object = OverdriveCleaner.new
-    temp_object.input_directory = input_directory
+    temp_object = OverdriveCleaner.new(input_directory)
     File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
   end
 
   it 'can be instantiated' do
-    oc = OverdriveCleaner.new
+    oc = OverdriveCleaner.new(input_directory)
     expect(oc).to be_instance_of(OverdriveCleaner)
   end
 
   it 'has a file of marc records' do
-    oc = OverdriveCleaner.new
+    oc = OverdriveCleaner.new(input_directory)
     expect(oc.marc_file).to be true
   end
 
@@ -39,9 +37,6 @@ RSpec.describe OverdriveCleaner do
     expect(oc.marc_files.first).to match 'Princeton University-20250204090033910_audio.mrc'
   end
 
-  # ask Trey about this test
-  # MARC::Exception:
-  # invalid record length: your
   it 'has a list of the marc records' do
     expect(oc.marc_records.count).to eq 16
   end
