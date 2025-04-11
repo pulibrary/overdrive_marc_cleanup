@@ -27,7 +27,7 @@ class OverdriveCleaner
   end
 
   def marc_files
-    Dir["#{input_directory}*"]
+    Dir["#{input_directory}/*"]
   end
 
   def write_output_file
@@ -40,10 +40,17 @@ class OverdriveCleaner
       reader = MARC::Reader.new(file)
       reader.each do |record|
         records << record
-        puts MarcCleanup.leader_errors?(record)
       end
     end
     records
+  end
+
+  def tag_100
+    authors = []
+    marc_records.each do |record|
+      authors << record['100'].to_s
+    end
+    authors
   end
 
   def author_100a
