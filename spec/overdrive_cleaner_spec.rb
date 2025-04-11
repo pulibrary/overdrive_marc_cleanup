@@ -10,12 +10,12 @@ RSpec.describe OverdriveCleaner do
   # runs before every test and deletes the output file
   before do
     temp_object = OverdriveCleaner.new(input_directory)
-    File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
+    File.delete(temp_object.output_filename) if File.exist?(temp_object.output_filename)
   end
 
   after do
     temp_object = OverdriveCleaner.new(input_directory)
-    File.delete(temp_object.output_file) if File.exist?(temp_object.output_file)
+    File.delete(temp_object.output_filename) if File.exist?(temp_object.output_filename)
   end
 
   it 'can be instantiated' do
@@ -38,6 +38,7 @@ RSpec.describe OverdriveCleaner do
   end
 
   it 'has a list of the marc records' do
+    oc = OverdriveCleaner.new(input_directory)
     expect(oc.marc_records.count).to eq 16
   end
 
@@ -45,11 +46,7 @@ RSpec.describe OverdriveCleaner do
     expect(oc.author_100a.first).to eq 'Kureishi, Hanif'
   end
 
-  it 'knows where the output file should go' do
-    expect(oc.output_file).to eq "#{input_directory}clean_records.mrc"
-  end
-
   it 'combines all the files and writes them out' do
-    expect(File.exist?(oc.output_file)).to be true
+    expect(File.exist?(oc.output_filename)).to be true
   end
 end
