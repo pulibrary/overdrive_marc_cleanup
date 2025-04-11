@@ -39,11 +39,11 @@ RSpec.describe OverdriveCleaner do
 
   it 'has a list of the marc records' do
     oc = OverdriveCleaner.new(input_directory)
-    expect(oc.marc_records.count).to eq 16
+    expect(oc.marc_records.count).to eq 26
   end
 
   it 'has an array with 100$a subfield for each marc record' do
-    expect(oc.author_100a.first).to eq 'Kureishi, Hanif'
+    expect(oc.author_100a.first).to eq 'Watts, Naomi,'
   end
 
   it 'combines all the files and writes them out' do
