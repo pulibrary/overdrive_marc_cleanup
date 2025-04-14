@@ -46,6 +46,15 @@ RSpec.describe OverdriveCleaner do
     expect(oc.author_100a.first).to eq 'Watts, Naomi,'
   end
 
+  context '100 tag' do
+    let(:input_directory) { File.join(File.dirname(__FILE__), 'fixtures/100_tag_no_period') }
+    let(:oc) { OverdriveCleaner.clean(input_directory) }
+
+    it 'ensures that the 100 tag always ends in a period' do
+      expect(oc.marc_records.first['100']['e'].to_s).to match 'author.'
+    end
+  end
+
   it 'combines all the files and writes them out' do
     expect(File.exist?(oc.output_filename)).to be true
   end

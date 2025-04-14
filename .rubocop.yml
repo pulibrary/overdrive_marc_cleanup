@@ -12,8 +12,15 @@ AllCops:
     - 'spec/support/**/*'
     - 'tmp/**/*'
 
+Naming/VariableNumber:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
 RSpec/DescribedClass:
   Enabled: false
 
 RSpec/MultipleExpectations:
   Enabled: false
+
