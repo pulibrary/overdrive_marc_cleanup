@@ -39,6 +39,7 @@ class OverdriveCleaner
     marc_files.each do |file|
       reader = MARC::Reader.new(file)
       reader.each do |record|
+        record = tag100_subfield_e(record)
         records << record
       end
     end
@@ -62,5 +63,17 @@ class OverdriveCleaner
       end
     end
     authors
+  end
+
+  # A method to add a period at the end of the 100 tag subfield e (100$e)
+  # This method cleans up the 100 tag subfield e
+  def tag100_subfield_e(record)
+    if record['100']['e'] == 'author'
+      tag100_subfields = record['100'].subfields
+      tag100e_subfields = tag100_subfields.select { |a| a.code == 'e' }
+      tag100e_subfield = tag100e_subfields[0]
+      tag100e_subfield.value = 'author.'
+    end
+    record
   end
 end

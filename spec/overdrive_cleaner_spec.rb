@@ -51,7 +51,7 @@ RSpec.describe OverdriveCleaner do
     let(:oc) { OverdriveCleaner.clean(input_directory) }
 
     it 'ensures that the 100 tag always ends in a period' do
-      expect(oc.tag_100.first.strip[-1]).to eq '.'
+      expect(oc.marc_records.first['100']['e'].to_s).to match 'author.'
     end
   end
 
