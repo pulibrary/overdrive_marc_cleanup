@@ -76,4 +76,12 @@ class OverdriveCleaner
     end
     record
   end
+
+  def tag_650
+    subjects = []
+    marc_records.each do |record|
+      subjects << record['650'].to_s
+    end
+    subjects
+  end
 end
