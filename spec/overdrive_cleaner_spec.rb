@@ -56,11 +56,11 @@ RSpec.describe OverdriveCleaner do
   end
 
   context '650 tag' do
-    let(:inpput_directory) { File.join(File.dirname(__FILE__), 'fixtures/650_tag') }
+    let(:input_directory) { File.join(File.dirname(__FILE__), 'fixtures/650_tag') }
     let(:oc) { OverdriveCleaner.clean(input_directory) }
 
     it 'has an array with 650$a subfield for each marc record' do
-      expect(oc.subject_650a.first).to eq 'People with quadriplegia'
+      expect(oc.subject_650a.first).to eq 'People with quadriplegia ǂv Diaries '
     end
 
     it 'ensures that the 650 tag always ends in a period' do
