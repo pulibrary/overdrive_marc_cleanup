@@ -40,7 +40,7 @@ class OverdriveCleaner
       reader = MARC::Reader.new(file)
       reader.each do |record|
         record = tag100_subfield_e(record)
-        record = tag650_subfield_v(record)
+        record = tag650_cleanup(record)
         records << record
       end
     end
@@ -91,9 +91,9 @@ class OverdriveCleaner
     subjects
   end
 
-  # A method to add a period at the end of the 650 tag subfield v (650ǂv)
-  # # This method cleans up the 650 tag subfield v
-  def tag650_subfield_v(record)
+  # A method to add a period at the end of the 650 tag last subfield if it is missing
+  # # This method cleans up the 650 tag
+  def tag650_cleanup(record)
     return record if record['650'].nil?
 
     unless record['650'][-1] == '.'
