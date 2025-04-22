@@ -68,9 +68,14 @@ RSpec.describe OverdriveCleaner do
     end
   end
 
-  # Work in progress
-  # TODO: actually combine the files
-  it 'combines all the files and writes them out' do
-    expect(File.exist?(oc.output_filename)).to be true
+  context 'writing file' do
+    let(:input_directory) { File.join(File.dirname(__FILE__), 'fixtures/Princeton University-20250204090033910/') }
+    let(:output_file) { File.join(File.dirname(__FILE__), 'fixtures/output/output_file.mrc') }
+    let(:oc) { OverdriveCleaner.new(input_directory, output_file) }
+
+    it 'combines all the files and writes them out' do
+      oc.write_output_file
+      expect(File.exist?(oc.output_filename)).to be true
+    end
   end
 end
