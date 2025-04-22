@@ -55,6 +55,21 @@ RSpec.describe OverdriveCleaner do
     end
   end
 
+  context '650 tag' do
+    let(:input_directory) { File.join(File.dirname(__FILE__), 'fixtures/650_tag') }
+    let(:oc) { OverdriveCleaner.clean(input_directory) }
+
+    it 'has an array with 650$a subfield for each marc record' do
+      expect(oc.subject_650a.first).to eq 'People with quadriplegia '
+    end
+
+    it 'ensures that the 650 tag always ends in a period' do
+      expect(oc.marc_records.first['650']['v'].to_s).to match 'Diaries.'
+    end
+  end
+
+  # Work in progress
+  # TODO: actually combine the files
   it 'combines all the files and writes them out' do
     expect(File.exist?(oc.output_filename)).to be true
   end
