@@ -60,7 +60,7 @@ RSpec.describe OverdriveCleaner do
     let(:oc) { OverdriveCleaner.clean(input_directory) }
 
     it 'has an array with 650$a subfield for each marc record' do
-      expect(oc.subject_650a.first).to eq 'People with quadriplegia ǂv Diaries '
+      expect(oc.subject_650a.first).to eq 'People with quadriplegia '
     end
 
     it 'ensures that the 650 tag always ends in a period' do

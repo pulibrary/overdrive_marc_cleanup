@@ -99,7 +99,7 @@ class OverdriveCleaner
     unless record['650'][-1] == '.'
       tag650_subfields = record['650'].subfields
       tag650_last_subfield = tag650_subfields[-1]
-      tag650_last_subfield.value = tag650_last_subfield.value + '.'
+      tag650_last_subfield.value = "#{tag650_last_subfield.value}."
     end
     record
   end
