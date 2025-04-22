@@ -31,7 +31,11 @@ class OverdriveCleaner
   end
 
   def write_output_file
-    File.open(output_filename, 'w') { |file| file.write('your text') }
+    writer = MARC::Writer.new(output_filename)
+    marc_records.each do |record|
+      writer.write(record)
+    end
+    writer.close
   end
 
   def marc_records
