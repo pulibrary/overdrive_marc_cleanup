@@ -17,7 +17,8 @@ class OverdriveCleaner
   end
 
   # output_filename is where the records that have been combined and cleaned
-  # OverdriveCleaner.new('/Users/swarren/Documents/OverdriveFiles', '/Users/swarren/Documents/alma_uploads/clean_records.mrc')
+  # OverdriveCleaner.new('/Users/swarren/Documents/OverdriveFiles',
+  # '/Users/swarren/Documents/alma_uploads/clean_records.mrc')
   def initialize(input_directory, output_filename = nil)
     @input_directory = input_directory
     @output_filename = output_filename || File.join(File.dirname(__FILE__), 'clean_records.mrc')
