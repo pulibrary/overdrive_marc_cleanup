@@ -74,7 +74,17 @@ RSpec.describe OverdriveCleaner do
     let(:output_file) { File.join(File.dirname(__FILE__), 'fixtures/output/output_file.mrc') }
     let(:oc) { OverdriveCleaner.new(input_directory, output_file) }
 
+    before do
+      File.delete(output_file) if File.exist?(output_file)
+    end
+
+    # this should be deleted leaving it here so I can show the output_file
+    # after do
+    #   File.delete(output_file) if File.exist?(output_file)
+    # end
+
     it 'combines all the files and writes them out' do
+      expect(File.exist?(oc.output_filename)).to be false
       oc.write_output_file
       expect(File.exist?(oc.output_filename)).to be true
       od = OverdriveCleaner.new(output_directory)
