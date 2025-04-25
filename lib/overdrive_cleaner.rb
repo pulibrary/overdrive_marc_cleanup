@@ -24,10 +24,7 @@ class OverdriveCleaner
     @output_filename = output_filename || File.join(File.dirname(__FILE__), 'clean_records.mrc')
   end
 
-  def marc_file
-    true
-  end
-
+  # Return an array of the files that are in this directory.
   def marc_files
     Dir["#{input_directory}/*"]
   end
@@ -40,6 +37,7 @@ class OverdriveCleaner
     writer.close
   end
 
+  # Returns an array of clean marc records.
   def marc_records
     records = []
     marc_files.each do |file|
@@ -61,6 +59,7 @@ class OverdriveCleaner
     authors
   end
 
+  # Testing ability to get a subfield out.
   def author_100a
     authors = []
     marc_files.each do |file|
@@ -84,6 +83,7 @@ class OverdriveCleaner
     record
   end
 
+  # Testing ability to get a subfield out.
   def subject_650a
     subjects = []
     marc_files.each do |file|
